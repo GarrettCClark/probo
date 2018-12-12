@@ -5,7 +5,6 @@ from scipy.stats import binom
 from scipy.stats import norm
 
 
-
 class PricingEngine(object, metaclass=abc.ABCMeta):
     
     @abc.abstractmethod
@@ -138,36 +137,9 @@ def NaiveMonteCarloPricer(engine, option, data):
     return prc
 
 def PathwiseNaiveMonteCarloPricer(engine, option, data):
-    (spot, rate, vol, div) = data.get_data()
-    expiry = option.expiry
-    nreps = engine.replications
-    nsteps = engine.time_steps
-    paths = AssetPaths(spot, rate, vol, expiry, div, nreps, nsteps)
-    cash_flows_t = np.zeros(engine.replications, )
-    call_t = 0.0
-    
-    for i in range(nreps):
-        call_t += option.payoff(paths[i])
-        cash_flows_t[i] = option.payoff(paths[i])
-           
-    call_t /= nreps
-    call_t *= np.exp(-rate * expiry)
-    stderr = cash_flows_t.std() / np.sqrt(engine.replications)
-    
-    return call_t, stderr
-
-def AssetPaths(spot, mu, sigma, expiry, div, nreps, nsteps):
-    paths = np.empty((nreps, nsteps + 1))
-    h = expiry / nsteps
-    paths[:, 0] = spot
-    mudt = (mu - div - 0.5 * sigma * sigma) * h
-    sigmadt = sigma * np.sqrt(h)
-    
-    for t in range(1, nsteps + 1):
-        z = np.random.normal(size=nreps)
-        paths[:, t] = paths[:, t-1] * np.exp(mudt + sigmadt * z)
-
-    return paths
+    ## You gotta put the code here!
+    ## See my AssetPaths function from class
+    pass
 
 def AntitheticMonteCarloPricer(engine, option, data):
     expiry = option.expiry
@@ -199,24 +171,24 @@ def ControlVariatePricer(engine, option, data):
     beta = -1.0
     cash_flow_t = np.zeros((engine.replications, ))
     price = 0.0
-    spot_t = np.zeros((engine.replications, engine.time_steps + 1))
 
     for j in range(engine.replications):
-        spot_t[:,0] = spot
+        spot_t = spot
         convar = 0.0
         z = np.random.normal(size=int(engine.time_steps))
 
         for i in range(int(engine.time_steps)):
             t = i * dt
             delta = BlackScholesDelta(spot, t, strike, expiry, volatility, rate, dividend)
-            spot_t[j, i + 1] = spot_t[j, i] * np.exp(nudt + sigsdt * z[i])
-            convar = convar + delta * (spot_t[j, i + 1] - spot_t[j, i] * erddt)
+            spot_tn = spot_t * np.exp(nudt + sigsdt * z[i])
+            convar = convar + delta * (spot_tn - spot_t * erddt)
+            spot_t = spot_tn
 
-        cash_flow_t[j] = option.payoff(spot_t[j,:]) + beta * convar
+        cash_flow_t[j] = option.payoff(spot_t) + beta * convar
 
     price = np.exp(-rate * expiry) * cash_flow_t.mean()
-    stderr = cash_flow_t.std() / np.sqrt(engine.replications)
-    return price, stderr
+    #stderr = cash_flow_t.std() / np.sqrt(engine.replications)
+    return price
 
 #class BlackScholesPayoffType(enum.Enum):
 #    call = 1

@@ -1,0 +1,29 @@
+---
+title: "Finance 5350 - Final Essay Proposal"
+author: "Garrett Clark"
+date: "October 26, 2018"
+output: pdf_document
+---
+
+
+1. Read the paper _What Should Economists Do?_ by James M. Buchanan. 
+  - Outline what Buchanan's main point is. Buchanan thinks economist should focus more on the on exchange rather than choice. He thinks many economists are looking at society when they should really be looking at the individuals that make up society and exchanges they make. Buchanan thinks it there is a place for computational models, but he thinks they should not be the primary focus of economists.   
+  - What does Buchanan mean by the word ___catallatics___? Buchanan referrers to catallatics as a word that better fits his definition of economics, the word means exchange. 
+  - According to Buchanan what do most economists do? Buchanan believes most economists do not put in the effort required to understand individuals, they are content with only understanding social aggregates.
+  -What does he think they should do differently? Buchanan thinks economists should focus more on methodology. They should not put as much focus on the mathematics and modeling, the should focus on understanding why something happens.
+      
+2. Write up your proposal.
+  - Write an abstract.
+  - Write an introduction.
+  - Write a brief literature review (include your three + 1 sources).
+  - Write in bullet point style the outline of your proposal.
+
+Computational models are used every day in an attempt to predict the future. Because of the many complex factors at work in the market it is not possible to perfectly predict the future. This paper is about the roles of the modern economist and the major limitations computational models. 
+
+There are many renowned economists with varying opinions on the appropriate roles of economist. They all have their reasoning to back up their opinions, but how do their writings hold up to the modern era where the use of computers and computational modeling have become the norm. I am going to answer the question, what should computational economists be doing and what are the major limitations of computational models? 
+-Buchanan what should an economist do? / role of traditional economist (The American Economic Review Hayek)
+-How modern economists have had to change: modern computing power has opened up new doors, monetary pressure 
+-The benefits of modeling: can use the past to predict the future, can set a baseline, (Option Arbitrage in Imperfect Markets Stephen Figlewski), (Using simulation to Better Understand Price Determination in a Nonfrictionless Equity Market)
+-Limitations of models: cannot predict the future, model can’t account for every variable in the real world, variable in the market are constantly changing, can lead to false sense of certainty 
+-What I think an economist should do
+-How I think computational models should be used

@@ -1,6 +1,5 @@
 import abc
-from numpy import mean, maximum, array
-import numpy as np
+from numpy import mean, maximum 
 
 class Payoff(object, metaclass=abc.ABCMeta):
     @property
@@ -52,9 +51,7 @@ def call_payoff(option, spot):
 def put_payoff(option, spot):
     return maximum(option.strike - spot, 0.0)
 
-def geo_mean(iterable):
-    a = array(iterable)
-    return a.prod()**(1.0/len(a))
+
 
 class ExoticPayoff(Payoff):
     def __init__(self, expiry, strike, payoff):
@@ -81,12 +78,12 @@ class ExoticPayoff(Payoff):
     def payoff(self, spot):
         return self.__payoff(self, spot)
     
-def geometricAsianCallPayoff(option, spot):
+def arithmeticAsianCallPayoff(option, spot):
    ## Assume that spot is a NumPy ndarray
    ## Call the `mean` method to get the arithmetic average
-   average = geo_mean(spot)
+   average = spot.mean()
    return maximum(average - option.strike, 0.0)
 
 def arithmeticAsianPutPayoff(option, spot):
-    average = mean(spot)
+    average = spot.mean()
     return maximum(option.strike - average, 0.0)
